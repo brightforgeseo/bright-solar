@@ -1,0 +1,29 @@
+{
+  "name": "bright-solar-philippines-landing-page",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "qa:seo": "python scripts/seo-qa.py",
+    "qa:privacy": "python scripts/privacy-source-qa.py"
+  },
+  "dependencies": {
+    "@lucide/astro": "^1.25.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.1.1",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@axe-core/playwright": "^4.12.1",
+    "playwright-core": "^1.61.1",
+    "typescript": "^6.0.3"
+  }
+}

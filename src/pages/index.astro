@@ -1,0 +1,465 @@
+---
+import '../styles/global.css';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BatteryCharging,
+  Building2,
+  Check,
+  ChevronDown,
+  FileText,
+  HousePlug,
+  Menu,
+  PackageCheck,
+  PanelsTopLeft,
+  PlugZap,
+  Ruler,
+  ShieldCheck,
+  X,
+  Zap,
+} from '@lucide/astro';
+
+const services = [
+  {
+    number: '01',
+    title: 'Solar for homes',
+    copy: 'System size starts with your electricity bill and usable roof area. We then account for daytime loads, shading and the equipment already on site.',
+    bestFor: 'Houses and townhouses',
+    icon: HousePlug,
+  },
+  {
+    number: '02',
+    title: 'Commercial solar',
+    copy: 'For businesses, operating hours matter as much as roof space. We plan around when the property uses power and what the connection can support.',
+    bestFor: 'Shops, offices and operating sites',
+    icon: Building2,
+  },
+  {
+    number: '03',
+    title: 'Hybrid and battery systems',
+    copy: 'If backup is part of the brief, we identify the circuits that matter and size storage around the job it needs to do.',
+    bestFor: 'Selected backup loads and stored solar',
+    icon: BatteryCharging,
+  },
+];
+
+const equipment = [
+  {
+    number: '01',
+    title: 'Monocrystalline solar panels',
+    range: 'Current 630 W option',
+    copy: 'Panel count and layout follow the usable roof area, shade conditions, electrical design and expected daytime use.',
+    icon: PanelsTopLeft,
+  },
+  {
+    number: '02',
+    title: 'Off-grid inverters',
+    range: '4 kW to 12 kW families',
+    copy: 'Options are available for properties that need independent power architecture, generator integration or limited grid access.',
+    icon: PlugZap,
+  },
+  {
+    number: '03',
+    title: 'Hybrid inverters',
+    range: 'Residential to commercial',
+    copy: 'Selected systems can combine solar, grid, battery and agreed backup circuits. Net-metering readiness depends on the exact design and utility approval.',
+    icon: Zap,
+  },
+  {
+    number: '04',
+    title: 'LiFePO4 battery storage',
+    range: '5.12 kWh to 25 kWh listed options',
+    copy: 'Indoor and outdoor battery families are available. Capacity is matched to essential loads, expected duration and reserve settings.',
+    icon: BatteryCharging,
+  },
+];
+
+const checks = [
+  ['Recent electricity bill', 'Monthly cost is useful, but the pattern of use matters too.', FileText],
+  ['Roof and shade', 'Usable area, orientation, roof condition and access affect the layout.', Ruler],
+  ['Electrical setup', 'The existing supply, switchboard and connection need to suit the proposed system.', Zap],
+  ['Connection route', 'We explain the net-metering or non-export route where relevant. Approval sits with the distribution utility.', ShieldCheck],
+];
+
+const projectPhotos = [
+  {
+    src: '/rooftop-solar-array.webp',
+    alt: 'Solar panel array mounted on a white metal roof beneath a clear sky',
+    title: 'Rooftop solar array',
+    detail: 'Current project photography',
+    featured: true,
+  },
+  {
+    src: '/installed-felicity-solar-system.webp',
+    alt: 'Wall-mounted Felicity Solar inverter, battery cabinet and electrical protection equipment',
+    title: 'Hybrid inverter and battery system',
+    detail: 'Installed indoor equipment',
+  },
+  {
+    src: '/equipment-delivery.webp',
+    alt: 'Packaged Felicity Solar inverter and lithium battery equipment outside a property',
+    title: 'Equipment arrival',
+    detail: 'Inverter and battery delivery',
+  },
+  {
+    src: '/battery-units.webp',
+    alt: 'Two crated lithium iron phosphate battery units inside a commercial space',
+    title: 'LiFePO4 battery units',
+    detail: 'Protected transport packaging',
+  },
+  {
+    src: '/solar-equipment-transport.webp',
+    alt: 'Packaged Felicity Solar inverter and lithium iron phosphate battery inside a vehicle',
+    title: 'Equipment in transit',
+    detail: 'Project logistics',
+  },
+];
+
+const process = [
+  ['Bill and goal review', 'Send a recent electricity bill and tell us whether the priority is daytime savings, backup, off-grid supply or future expansion.'],
+  ['Qualified site survey', 'The appointed implementation team checks the roof, shade, access, electrical setup and project constraints.'],
+  ['Written system proposal', 'You receive the proposed equipment, system scope, responsibility split and model-specific warranty information.'],
+  ['Installation and handover', 'The appointed implementation partner completes approved technical work, testing, warranty registration and handover.'],
+];
+
+const faqs = [
+  ['What size solar system do I need in the Philippines?', 'There is no useful standard answer. The right size depends on daytime electricity use, available roof area, shading, connection limits and whether storage is part of the plan.'],
+  ['What Felicity Solar equipment can be considered?', 'Current options include off-grid and hybrid inverter families plus indoor and outdoor LiFePO4 battery storage. Final equipment depends on stock, compatibility, site conditions and the technical design.'],
+  ['Will solar panels work during cloudy or rainy weather?', 'Yes, but output falls when there is less sunlight. The design should use realistic conditions and annual production estimates, not a perfect-day figure.'],
+  ['Can my property apply for net metering?', 'Eligible renewable energy systems can apply through their distribution utility. Requirements and approval depend on current rules, the local utility and the proposed system.'],
+  ['Do I need a battery with my solar system?', 'Not necessarily. A grid-connected system can operate without one. A battery becomes relevant when you want stored solar, selected backup loads or a route to greater energy independence.'],
+  ['Who handles installation and after-sales?', 'Bright Solar handles initial education, assessment intake and qualified project routing. The appointed implementation partner handles final engineering, installation, permits, warranty registration and after-sales for the agreed project.'],
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Bright Solar helps Philippine homes and businesses assess solar, hybrid and battery systems, with clear equipment options and partner installation." />
+    <meta name="theme-color" content="#0a2342" />
+    <meta property="og:title" content="Solar Systems Philippines | Bright Solar" />
+    <meta property="og:description" content="Practical solar assessment, current equipment options and qualified installation support for Philippine homes and businesses." />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Solar Systems Philippines | Bright Solar</title>
+  </head>
+  <body class="bg-stone text-ink antialiased">
+    <header id="top" class="site-header">
+      <div class="page-shell flex h-[76px] items-center justify-between">
+        <a href="#top" class="brand" aria-label="Bright Solar home">
+          <img class="brand-logo" src="/bright-solar-logo.svg" alt="Bright Solar" width="1050" height="235" />
+        </a>
+
+        <nav class="hidden items-center gap-8 text-sm font-semibold lg:flex" aria-label="Primary navigation">
+          <a class="nav-link" href="#systems">Systems</a>
+          <a class="nav-link" href="#equipment">Equipment</a>
+          <a class="nav-link" href="#projects">Projects</a>
+          <a class="nav-link" href="#process">Process</a>
+          <a class="nav-link" href="#faq">FAQs</a>
+        </nav>
+
+        <a href="#enquiry" class="button button-dark hidden lg:inline-flex">Request an assessment <ArrowUpRight size={17} /></a>
+        <button id="menu-open" class="menu-button lg:hidden" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><Menu size={23} /></button>
+      </div>
+    </header>
+
+    <div id="mobile-menu" class="fixed inset-0 z-50 hidden bg-ink text-white" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <div class="flex h-[76px] items-center justify-between border-b border-white/15 px-5">
+        <a href="#top" class="brand"><img class="brand-logo brand-logo-reversed" src="/bright-solar-logo-reversed.svg" alt="Bright Solar" width="1050" height="235" /></a>
+        <button id="menu-close" class="menu-button border-white/25" aria-label="Close navigation"><X size={23} /></button>
+      </div>
+      <nav class="flex flex-col px-5 pt-8 text-2xl font-bold">
+        <a class="mobile-link" href="#systems">Systems</a>
+        <a class="mobile-link" href="#equipment">Equipment</a>
+        <a class="mobile-link" href="#projects">Projects</a>
+        <a class="mobile-link" href="#process">Process</a>
+        <a class="mobile-link" href="#faq">FAQs</a>
+        <a class="button button-solar mt-8 w-fit" href="#enquiry">Request an assessment <ArrowRight size={17} /></a>
+      </nav>
+    </div>
+
+    <main>
+      <section class="hero">
+        <div class="page-shell grid min-h-[690px] items-stretch lg:grid-cols-[1.02fr_0.98fr]">
+          <div class="hero-copy flex flex-col justify-center border-x border-line px-5 py-20 sm:px-8 lg:border-r-0 lg:px-12 lg:py-28">
+            <p class="eyebrow eyebrow-light">Solar systems Philippines</p>
+            <h1 class="mt-7 max-w-3xl text-[clamp(2.6rem,5vw,5.2rem)] font-extrabold leading-[0.98] tracking-[-0.048em]">
+              Solar power matched to your property and priorities.
+            </h1>
+            <p class="hero-summary mt-7 max-w-xl text-lg leading-8 sm:text-xl">
+              Start with your electricity bill, location and goals. We will help define the right solar, hybrid or battery route before a qualified implementation partner fixes the technical design.
+            </p>
+            <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+              <a href="#enquiry" class="button button-solar">Request a solar assessment <ArrowUpRight size={17} /></a>
+              <a href="#projects" class="button button-text">See current project photos <ArrowRight size={17} /></a>
+            </div>
+          </div>
+
+          <figure class="hero-photo-wrap">
+            <img class="hero-photo" src="/rooftop-solar-array.webp" alt="Solar panel array mounted on a white metal roof beneath a clear sky" width="896" height="1195" loading="eager" fetchpriority="high" />
+            <figcaption>
+              <span>Rooftop solar array</span>
+              <small>Supplied project photography</small>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="bg-ink text-white">
+          <div class="page-shell grid sm:grid-cols-3">
+            <div class="fact"><span>01</span><p>Homes and townhouses</p></div>
+            <div class="fact"><span>02</span><p>Commercial and operating sites</p></div>
+            <div class="fact"><span>03</span><p>Solar, hybrid, battery and off-grid options</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="systems" class="section bg-white">
+        <div class="page-shell">
+          <div class="section-intro">
+            <div>
+              <p class="eyebrow">What we assess</p>
+              <h2>Start with the job the system needs to do.</h2>
+            </div>
+            <p>A package price is not a design. We look at the property and electricity use before deciding how much solar, what inverter and whether storage is worth including.</p>
+          </div>
+
+          <div class="mt-16 grid border-l border-t border-line lg:grid-cols-3">
+            {services.map((service) => {
+              const Icon = service.icon;
+              return (
+                <article class="service-card">
+                  <div class="flex items-start justify-between">
+                    <span class="service-number">{service.number}</span>
+                    <Icon size={25} stroke-width={1.8} />
+                  </div>
+                  <h3>{service.title}</h3>
+                  <p>{service.copy}</p>
+                  <div class="service-fit"><span>Best for</span>{service.bestFor}</div>
+                  <a href="#enquiry" aria-label={`Ask about ${service.title}`}>Discuss this system <ArrowRight size={16} /></a>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="equipment" class="section equipment-section">
+        <div class="page-shell">
+          <div class="section-intro">
+            <div>
+              <p class="eyebrow">Current Felicity Solar options</p>
+              <h2>Panels, inverters and batteries chosen as one system.</h2>
+            </div>
+            <p>Current supply evidence covers solar panels, off-grid and hybrid inverters, and LiFePO4 storage. Exact model availability, compatibility and warranty terms are confirmed in the written proposal.</p>
+          </div>
+
+          <div class="equipment-grid mt-16">
+            {equipment.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article class="equipment-card">
+                  <div class="equipment-card-head">
+                    <span>{item.number}</span>
+                    <Icon size={24} stroke-width={1.8} />
+                  </div>
+                  <p class="equipment-range">{item.range}</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.copy}</p>
+                </article>
+              );
+            })}
+          </div>
+
+          <div class="equipment-note">
+            <PackageCheck size={25} stroke-width={1.8} />
+            <div>
+              <h3>Know the exact scope before committing.</h3>
+              <p>Final proposals record the equipment models, installation scope, responsibility split, current manufacturer warranty route and after-sales owner. Features such as app monitoring, generator integration, backup-load separation and net-metering readiness depend on the selected system.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="assessment" class="section bg-deep text-white">
+        <div class="page-shell grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+          <div>
+            <p class="eyebrow eyebrow-light">Before we quote</p>
+            <h2 class="max-w-lg">What needs to be checked first.</h2>
+            <p class="mt-7 max-w-md text-base leading-8 text-white/72">These checks stop the design from becoming a list of equipment with no connection to the property.</p>
+          </div>
+          <div class="border-t border-white/20">
+            {checks.map(([title, copy, icon]) => {
+              const Icon = icon;
+              return (
+                <article class="assessment-row">
+                  <Icon size={21} stroke-width={1.8} />
+                  <h3>{title}</h3>
+                  <p>{copy}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section project-section bg-white">
+        <div class="page-shell">
+          <div class="section-intro">
+            <div>
+              <p class="eyebrow">Current project evidence</p>
+              <h2>Real panels, storage and installation equipment.</h2>
+            </div>
+            <p>These supplied photographs show current rooftop solar, equipment deliveries, battery units and an installed inverter and storage configuration. Final systems vary by property and approved technical design.</p>
+          </div>
+
+          <div class="project-grid mt-16">
+            {projectPhotos.map((photo) => (
+              <figure class:list={['project-photo', photo.featured && 'project-photo-featured']}>
+                <img src={photo.src} alt={photo.alt} loading={photo.featured ? 'eager' : 'lazy'} />
+                <figcaption>
+                  <strong>{photo.title}</strong>
+                  <span>{photo.detail}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="section">
+        <div class="page-shell">
+          <div class="section-intro">
+            <div>
+              <p class="eyebrow">How the work moves</p>
+              <h2>Clear responsibilities from enquiry to handover.</h2>
+            </div>
+            <p>Bright Solar handles initial education, assessment intake and qualified routing. The appointed implementation partner owns the final technical design, installation, permits, warranty registration and after-sales.</p>
+          </div>
+
+          <ol class="process-list mt-16">
+            {process.map(([title, copy], index) => (
+              <li>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section id="enquiry" class="section bg-white">
+        <div class="page-shell grid border border-line lg:grid-cols-[0.78fr_1.22fr]">
+          <div class="enquiry-copy">
+            <p class="eyebrow">Solar enquiry</p>
+            <h2>Tell us about the property and current bill.</h2>
+            <p>We need the location, bill range and intended outcome to make the first assessment useful. A copy of the actual bill and site photos can follow securely.</p>
+            <ul>
+              <li><Check size={17} /> Residential and commercial enquiries</li>
+              <li><Check size={17} /> Solar-only, hybrid, battery and off-grid options</li>
+              <li><Check size={17} /> Bill-led qualification before technical design</li>
+              <li><Check size={17} /> Clear partner responsibility for installation and after-sales</li>
+            </ul>
+          </div>
+
+          <form id="assessment-form" class="enquiry-form">
+            <label class="form-field"><span>Name</span><input required name="name" autocomplete="name" placeholder="Your name" /></label>
+            <label class="form-field"><span>Email</span><input required type="email" name="email" autocomplete="email" placeholder="you@example.com" /></label>
+            <label class="form-field"><span>City or province</span><input required name="location" autocomplete="address-level2" placeholder="e.g. Quezon City" /></label>
+            <label class="form-field"><span>Property type</span><select name="property"><option>House</option><option>Townhouse</option><option>Commercial property</option><option>Farm or rural property</option><option>Other</option></select></label>
+            <label class="form-field sm:col-span-2"><span>Typical monthly electricity bill</span><select name="bill"><option>Below ₱5,000</option><option>₱5,000 to ₱10,000</option><option>₱10,001 to ₱25,000</option><option>₱25,001 to ₱50,000</option><option>Above ₱50,000</option></select></label>
+            <fieldset class="sm:col-span-2">
+              <legend>Interested in</legend>
+              <div class="flex flex-wrap gap-2">
+                <label class="interest-pill"><input type="checkbox" name="interest" value="solar" /><span>Grid-connected solar</span></label>
+                <label class="interest-pill"><input type="checkbox" name="interest" value="battery" /><span>Solar + battery</span></label>
+                <label class="interest-pill"><input type="checkbox" name="interest" value="hybrid" /><span>Hybrid system</span></label>
+                <label class="interest-pill"><input type="checkbox" name="interest" value="off-grid" /><span>Off-grid system</span></label>
+              </div>
+            </fieldset>
+            <label class="form-field sm:col-span-2"><span>What do you want the system to do?</span><textarea name="goals" rows="4" placeholder="Lower daytime grid use, cover selected backup loads, support a remote property, prepare for storage..."></textarea></label>
+            <label class="consent-field sm:col-span-2"><input required type="checkbox" name="partner-consent" /><span>I agree that Bright Solar may share this enquiry with an appointed installation partner for assessment, quotation and project follow-up.</span></label>
+            <div class="form-actions sm:col-span-2">
+              <p>Secure form delivery must be connected before public launch. No documents are uploaded through this preview form.</p>
+              <button type="submit" class="button button-dark">Send enquiry <ArrowUpRight size={17} /></button>
+            </div>
+            <p id="form-success" class="hidden border-t border-line pt-5 text-sm font-bold text-deep sm:col-span-2" role="status">The preview interaction is working. Secure delivery and partner routing must be connected before public launch.</p>
+          </form>
+        </div>
+      </section>
+
+      <section id="faq" class="section">
+        <div class="page-shell grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
+          <div>
+            <p class="eyebrow">Solar systems Philippines FAQ</p>
+            <h2>Common questions before choosing a solar system.</h2>
+          </div>
+          <div class="border-t border-line">
+            {faqs.map(([question, answer]) => (
+              <details class="faq-item group">
+                <summary>
+                  {question}
+                  <span><ChevronDown size={17} /></span>
+                </summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="page-shell">
+        <div class="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <a href="#top" class="brand"><img class="brand-logo brand-logo-reversed" src="/bright-solar-logo-reversed.svg" alt="Bright Solar" width="1050" height="235" /></a>
+            <p>Solar assessment and product matching for Philippine homes and businesses, with technical delivery through appointed implementation partners.</p>
+          </div>
+          <nav aria-label="Footer navigation">
+            <a href="#systems">Systems</a>
+            <a href="#equipment">Equipment</a>
+            <a href="#projects">Projects</a>
+            <a href="#process">Process</a>
+            <a href="#enquiry">Contact</a>
+          </nav>
+        </div>
+        <div class="footer-bottom"><span>© {new Date().getFullYear()} Bright Solar.</span><span>Equipment, availability and installation scope are confirmed per project.</span></div>
+      </div>
+    </footer>
+
+    <script>
+      const openButton = document.querySelector('#menu-open');
+      const closeButton = document.querySelector('#menu-close');
+      const menu = document.querySelector('#mobile-menu');
+      const mobileLinks = document.querySelectorAll('.mobile-link, #mobile-menu a[href="#enquiry"]');
+
+      const openMenu = () => {
+        menu?.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        openButton?.setAttribute('aria-expanded', 'true');
+      };
+      const closeMenu = () => {
+        menu?.classList.add('hidden');
+        document.body.style.overflow = '';
+        openButton?.setAttribute('aria-expanded', 'false');
+      };
+
+      openButton?.addEventListener('click', openMenu);
+      closeButton?.addEventListener('click', closeMenu);
+      mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
+
+      const form = document.querySelector('#assessment-form');
+      const success = document.querySelector('#form-success');
+      form?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        success?.classList.remove('hidden');
+      });
+    </script>
+  </body>
+</html>

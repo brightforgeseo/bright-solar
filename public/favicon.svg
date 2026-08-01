@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 210" role="img" aria-labelledby="t d"><title id="t">Bright Solar orbit mark</title><desc id="d">Original tapered solar-orbit symbol.</desc><g aria-label="Original solar orbit symbol">
+<defs><linearGradient id="mark-warm" x1=".05" y1=".1" x2=".95" y2=".85"><stop offset="0" stop-color="#FFB347"/><stop offset=".52" stop-color="#F47A1F"/><stop offset="1" stop-color="#E85D18"/></linearGradient></defs>
+<path d="M184 32C121 12 51 49 35 112C18 180 84 219 161 185C105 199 59 169 62 121C65 76 109 43 184 32Z" fill="url(#mark-warm)"/>
+<path d="M181 59C129 38 78 68 69 115C61 156 96 184 145 166C111 174 87 150 91 119C95 87 127 65 181 59Z" fill="url(#mark-warm)" opacity=".93"/>
+<path d="M170 84C137 71 106 92 103 120C101 144 121 160 151 148C132 152 117 138 120 120C123 101 141 88 170 84Z" fill="url(#mark-warm)" opacity=".86"/>
+</g></svg>
