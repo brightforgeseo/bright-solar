@@ -8,6 +8,7 @@ const browser = await chromium.launch({
 });
 
 for (const config of [
+  { name: 'wide-desktop', width: 1920, height: 1080 },
   { name: 'desktop', width: 1440, height: 1000 },
   { name: 'mobile', width: 390, height: 844 },
 ]) {
@@ -24,4 +25,4 @@ for (const config of [
 }
 
 await browser.close();
-console.log('Captured desktop and mobile full-page screenshots.');
+console.log('Captured wide desktop, desktop and mobile full-page screenshots.');

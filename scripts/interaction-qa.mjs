@@ -3,7 +3,7 @@ import { chromium } from 'playwright-core';
 const executablePath = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const baseUrl = process.env.QA_BASE_URL ?? 'http://127.0.0.1:4322';
 const browser = await chromium.launch({ headless: true, executablePath });
-const results = { desktop: {}, mobile: {}, errors: [] };
+const results = { wideDesktop: {}, desktop: {}, mobile: {}, errors: [] };
 
 async function run(viewport, mode) {
   const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
@@ -63,6 +63,7 @@ async function run(viewport, mode) {
   await page.close();
 }
 
+await run({ width: 1920, height: 1080 }, 'wideDesktop');
 await run({ width: 1440, height: 1000 }, 'desktop');
 await run({ width: 390, height: 844 }, 'mobile');
 await browser.close();
@@ -70,16 +71,17 @@ await browser.close();
 const failed = [];
 if (results.desktop.title !== 'Solar Systems Philippines | Bright Solar') failed.push('desktop title');
 if (!results.desktop.h1?.includes('matched to your property and priorities')) failed.push('desktop h1');
+if (results.wideDesktop.width.document !== results.wideDesktop.width.viewport) failed.push('wide desktop overflow');
 if (results.desktop.width.document !== results.desktop.width.viewport) failed.push('desktop overflow');
 if (results.mobile.width.document !== results.mobile.width.viewport) failed.push('mobile overflow');
-if (!results.desktop.faqOpen || !results.mobile.faqOpen) failed.push('faq interaction');
-if (!results.desktop.formSuccess || !results.mobile.formSuccess) failed.push('form interaction');
-if (!results.desktop.interestChecked || !results.mobile.interestChecked) failed.push('interest control');
-if (!results.desktop.consentChecked || !results.mobile.consentChecked) failed.push('partner consent');
-if (results.desktop.projectImages !== 5 || results.mobile.projectImages !== 5) failed.push('project image count');
+if (!results.wideDesktop.faqOpen || !results.desktop.faqOpen || !results.mobile.faqOpen) failed.push('faq interaction');
+if (!results.wideDesktop.formSuccess || !results.desktop.formSuccess || !results.mobile.formSuccess) failed.push('form interaction');
+if (!results.wideDesktop.interestChecked || !results.desktop.interestChecked || !results.mobile.interestChecked) failed.push('interest control');
+if (!results.wideDesktop.consentChecked || !results.desktop.consentChecked || !results.mobile.consentChecked) failed.push('partner consent');
+if (results.wideDesktop.projectImages !== 5 || results.desktop.projectImages !== 5 || results.mobile.projectImages !== 5) failed.push('project image count');
 if (!results.mobile.menu?.menuVisible || !results.mobile.menu?.bodyLocked || !results.mobile.menu?.menuClosed) failed.push('mobile menu');
-if (results.desktop.brokenImages.length || results.mobile.brokenImages.length) failed.push('broken image');
-if (results.desktop.consoleErrors.length || results.mobile.consoleErrors.length) failed.push('console error');
+if (results.wideDesktop.brokenImages.length || results.desktop.brokenImages.length || results.mobile.brokenImages.length) failed.push('broken image');
+if (results.wideDesktop.consoleErrors.length || results.desktop.consoleErrors.length || results.mobile.consoleErrors.length) failed.push('console error');
 results.passed = failed.length === 0;
 results.failed = failed;
 console.log(JSON.stringify(results, null, 2));
