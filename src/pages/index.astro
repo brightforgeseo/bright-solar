@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Daylight from '../components/Daylight.astro';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -86,7 +87,7 @@ const projectPhotos = [
     src: '/rooftop-solar-array.webp',
     alt: 'Solar panel array mounted on a white metal roof beneath a clear sky',
     title: 'Rooftop solar array',
-    detail: 'Current project photography',
+    detail: 'Rooftop installation',
     featured: true,
   },
   {
@@ -139,14 +140,14 @@ const faqs = [
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content="Bright Solar helps Philippine homes and businesses assess solar, hybrid and battery systems, with clear equipment options and partner installation." />
     <meta name="theme-color" content="#0a2342" />
-    <meta property="og:title" content="Solar Systems Philippines | Bright Solar" />
+    <meta property="og:title" content="Solar Panel Installation Planning Manila | Bright Solar" />
     <meta property="og:description" content="Practical solar assessment, current equipment options and qualified installation support for Philippine homes and businesses." />
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Solar Systems Philippines | Bright Solar</title>
+    <title>Solar Panel Installation Planning Manila | Bright Solar</title>
   </head>
   <body class="bg-stone text-ink antialiased">
     <header id="top" class="site-header">
@@ -184,39 +185,7 @@ const faqs = [
     </div>
 
     <main>
-      <section class="hero">
-        <div class="page-shell hero-shell grid min-h-[690px] items-stretch lg:grid-cols-[1.02fr_0.98fr]">
-          <div class="hero-copy flex flex-col justify-center border-x border-line px-5 py-20 sm:px-8 lg:border-r-0 lg:px-12 lg:py-28">
-            <p class="eyebrow eyebrow-light">Solar systems Philippines</p>
-            <h1 class="mt-7 max-w-3xl text-[clamp(2.6rem,5vw,5.2rem)] font-extrabold leading-[0.98] tracking-[-0.048em]">
-              Solar power matched to your property and priorities.
-            </h1>
-            <p class="hero-summary mt-7 max-w-xl text-lg leading-8 sm:text-xl">
-              Start with your electricity bill, location and goals. We will help define the right solar, hybrid or battery route before a qualified implementation partner fixes the technical design.
-            </p>
-            <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a href="#enquiry" class="button button-solar">Request a solar assessment <ArrowUpRight size={17} /></a>
-              <a href="#projects" class="button button-text">See current project photos <ArrowRight size={17} /></a>
-            </div>
-          </div>
-
-          <figure class="hero-photo-wrap">
-            <img class="hero-photo" src="/rooftop-solar-array.webp" alt="Solar panel array mounted on a white metal roof beneath a clear sky" width="896" height="1195" loading="eager" fetchpriority="high" />
-            <figcaption>
-              <span>Rooftop solar array</span>
-              <small>Supplied project photography</small>
-            </figcaption>
-          </figure>
-        </div>
-
-        <div class="bg-ink text-white">
-          <div class="page-shell grid sm:grid-cols-3">
-            <div class="fact"><span>01</span><p>Homes and townhouses</p></div>
-            <div class="fact"><span>02</span><p>Commercial and operating sites</p></div>
-            <div class="fact"><span>03</span><p>Solar, hybrid, battery and off-grid options</p></div>
-          </div>
-        </div>
-      </section>
+      <Daylight />
 
       <section id="systems" class="section bg-white">
         <div class="page-shell">
@@ -255,7 +224,7 @@ const faqs = [
               <p class="eyebrow">Current Felicity Solar options</p>
               <h2>Panels, inverters and batteries chosen as one system.</h2>
             </div>
-            <p>Current supply evidence covers solar panels, off-grid and hybrid inverters, and LiFePO4 storage. Exact model availability, compatibility and warranty terms are confirmed in the written proposal.</p>
+            <p>Compare solar panels, off-grid and hybrid inverters, and LiFePO4 storage. Exact model availability, compatibility and warranty terms are confirmed in the written proposal.</p>
           </div>
 
           <div class="equipment-grid mt-16">
@@ -311,8 +280,8 @@ const faqs = [
         <div class="page-shell">
           <div class="section-intro">
             <div>
-              <p class="eyebrow">Current project evidence</p>
-              <h2>Real panels, storage and installation equipment.</h2>
+              <p class="eyebrow">A closer look</p>
+              <h2>From the rooftop to the battery.</h2>
             </div>
             <p>These supplied photographs show current rooftop solar, equipment deliveries, battery units and an installed inverter and storage configuration. Final systems vary by property and approved technical design.</p>
           </div>

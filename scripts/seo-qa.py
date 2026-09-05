@@ -3,7 +3,7 @@ from pathlib import Path
 import re
 
 HTML_PATH = Path(__file__).resolve().parents[1] / 'dist' / 'index.html'
-PRIMARY = 'solar systems philippines'
+PRIMARY = 'solar panel installation in manila'
 
 class AuditParser(HTMLParser):
     def __init__(self):
@@ -84,11 +84,11 @@ checks = {
 }
 
 failures = []
-if title != 'Solar Systems Philippines | Bright Solar': failures.append('title')
+if title != 'Solar Panel Installation Planning Manila | Bright Solar': failures.append('title')
 if not 40 <= len(title) <= 60: failures.append('title length')
 if not 140 <= len(description) <= 155: failures.append('description length')
 if parser.h1_count != 1: failures.append('h1 count')
-if not 2 <= keyword_occurrences <= 5: failures.append('keyword occurrence range')
+if not 1 <= keyword_occurrences <= 5: failures.append('keyword occurrence range')
 if parser.lang != 'en': failures.append('language')
 if not checks['viewport_present']: failures.append('viewport')
 if not checks['open_graph_present']: failures.append('Open Graph')

@@ -1,0 +1,87 @@
+---
+---
+<section class="daylight" aria-labelledby="solar-title">
+  <div class="daylight-photo" aria-hidden="true"></div>
+  <div class="daylight-copy">
+    <p class="solar-kicker">BRIGHT SOLAR / PHILIPPINES</p>
+    <h1 id="solar-title">Your roof.<br/>Your power.<br/><span>A brighter day.</span></h1>
+    <p class="daylight-intro">Exploring solar panel installation in Manila? Start with how you use electricity, not a package size. We help you work out what belongs on your roof, and whether a battery belongs in the plan.</p>
+    <a class="solar-action" href="#power-story">Explore your solar options <span aria-hidden="true">↗</span></a>
+    <p class="daylight-footnote">Homes · Businesses · Solar + storage</p>
+  </div>
+  <a class="photo-caption" href="#projects">Explore the equipment photography <span aria-hidden="true">↗</span></a>
+  <div class="daylight-bottom"><span>SUNLIGHT IS ONLY HALF THE STORY.</span><span>How you use it matters. ↓</span></div>
+</section>
+<section class="power-story" id="power-story" aria-labelledby="power-heading">
+ <div class="story-heading"><p class="solar-kicker">01 / FOLLOW THE ENERGY</p><h2 id="power-heading">Same roof.<br/><em>Different priorities.</em></h2><p>Move through the day. See why reducing daytime grid use and keeping essential circuits running are two different design questions.</p></div>
+ <div class="power-workbench">
+  <div class="power-toolbar"><span>AN ILLUSTRATED DAY</span><output id="time-output" for="sun-time">12:00 / Midday</output></div>
+  <div class="energy-scene" data-phase="day" data-battery="false">
+   <svg viewBox="0 0 800 340" role="img" aria-labelledby="scene-title scene-description">
+    <title id="scene-title">Solar energy flow through a home</title><desc id="scene-description">Illustration of rooftop solar, a home, a battery and the electricity grid. The explanation below changes with the time and battery controls.</desc>
+    <defs><pattern id="solar-grid" width="27" height="23" patternUnits="userSpaceOnUse"><rect width="27" height="23" fill="#193c60"/><path d="M0 0H27V23" fill="none" stroke="#7a9cba" stroke-width="1"/></pattern></defs>
+    <path class="horizon" d="M20 270H780"/>
+    <g class="sun-object"><circle cx="400" cy="56" r="24"/><path d="M400 15V6M400 97V106M359 56H350M441 56H450M371 27L365 21M429 85L435 91M371 85L365 91M429 27L435 21"/></g>
+    <path class="roof" d="M230 165L380 86L530 165"/>
+    <path class="house" d="M255 163V269H505V163L380 99Z"/>
+    <path d="M285 149L376 101L447 139L356 189Z" fill="url(#solar-grid)" stroke="#87abc4" stroke-width="2"/>
+    <rect class="window" x="281" y="198" width="45" height="37"/><path class="window" d="M363 269V202H405V269"/>
+    <path class="solar-wire" d="M438 151V185H471V233H506"/>
+    <g class="battery-object"><rect x="554" y="204" width="50" height="66" rx="5"/><path d="M569 198H589M580 216L570 237H589L578 258"/></g>
+    <path class="battery-wire" d="M506 233H554"/>
+    <g class="grid-object"><path d="M688 269V123M660 140H716M660 160H716M670 140V128M706 140V128M661 128Q606 159 536 127"/></g>
+    <path class="grid-wire" d="M505 251H688V164"/>
+    <text x="380" y="305" text-anchor="middle">YOUR PROPERTY</text><text x="579" y="305" text-anchor="middle">BATTERY</text><text x="688" y="305" text-anchor="middle">GRID</text>
+   </svg>
+  </div>
+  <div class="time-control"><label for="sun-time">Move through the day</label><input id="sun-time" type="range" min="6" max="22" value="12" step="1"/><div class="time-labels"><span>06:00</span><span>12:00</span><span>18:00</span><span>22:00</span></div></div>
+  <label class="battery-toggle"><input id="battery-mode" type="checkbox"/><span class="switch-track" aria-hidden="true"></span><span>Explore a battery system</span></label>
+  <div class="energy-explanation" aria-live="polite" aria-atomic="true"><h3 id="energy-heading">Use the sunshine while it’s here.</h3><p id="energy-copy">When generation is available, solar can supply daytime loads. Output and demand change, so the grid may still supply part of your electricity.</p></div>
+  <p class="model-note">Concept illustration, not a production forecast. Weather, shading, system size, battery charge and actual electricity use are not modelled.</p>
+ </div>
+</section>
+<section class="solar-finder" aria-labelledby="finder-heading">
+ <div><p class="solar-kicker">02 / MAKE IT ABOUT YOUR PROPERTY</p><h2 id="finder-heading">What would you<br/>like solar to do?</h2><p>No bill upload. No made-up payback figure.<br/>Just a useful starting point.</p></div>
+ <div class="finder-panel">
+  <label for="solar-goal">My main priority is</label>
+  <select id="solar-goal"><option value="day">Lower daytime grid use</option><option value="backup">Keep selected essentials running</option><option value="business">Power a business during opening hours</option><option value="remote">Explore power for a remote property</option></select>
+  <div aria-live="polite" aria-atomic="true"><p class="route-label">YOUR STARTING POINT</p><h3 id="route-title">Explore grid-connected solar.</h3><p id="route-copy">Match generation to when the property uses electricity. A battery is a separate decision, not an automatic extra.</p><h4>Bring these to the conversation</h4><ul id="route-checklist"><li>A recent bill showing kWh usage</li><li>Your usual daytime appliances</li><li>Roof photographs and property location</li></ul></div>
+  <a id="route-action" class="solar-action" href="#enquiry">Build my assessment brief <span aria-hidden="true">↗</span></a>
+ </div>
+</section>
+<script>
+ const time = document.querySelector<HTMLInputElement>('#sun-time')!;
+ const battery = document.querySelector<HTMLInputElement>('#battery-mode')!;
+ const scene = document.querySelector<HTMLElement>('.energy-scene')!;
+ const setText = (id: string, text: string) => { document.getElementById(id)!.textContent = text; };
+ function updateEnergy() {
+  const hour=Number(time.value), stored=battery.checked;
+  const phase=hour<9?'morning':hour<17?'day':hour<19?'evening':'night';
+  scene.dataset.phase=phase;scene.dataset.battery=String(stored);
+  setText('time-output',`${String(hour).padStart(2,'0')}:00 / ${phase==='day'?'Midday':phase.charAt(0).toUpperCase()+phase.slice(1)}`);
+  const copy: Record<string,string[]>={
+   morning:['Your electricity use starts before peak sunshine.','Morning output depends on light and roof conditions. The grid can meet demand that solar does not cover.'],
+   day:['Use the sunshine while it’s here.','When generation is available, solar can supply daytime loads. Output and demand change, so the grid may still supply part of your electricity.'],
+   evening:['The sun winds down. Your home may not.','Evening cooking, lighting and cooling can increase demand as solar output falls. Without storage, the grid supplies the difference.'],
+   night:['After sunset, the grid takes over.','Solar panels do not generate at night. A solar-only grid-connected system relies on the grid after sunset.']};
+  let [heading,body]=copy[phase];
+  if(stored){
+   if(phase==='day'){heading='Use solar now. Store a portion for later.';body='A compatible battery may store available surplus after daytime loads are met. Charging depends on generation, demand, battery limits and system settings.';}
+   else{heading='Stored energy has a specific job.';body='A charged battery can supply selected loads within its power and energy limits. Backup during an outage requires a compatible inverter, appropriate wiring and an agreed circuit design.';}
+  }
+  setText('energy-heading',heading);setText('energy-copy',body);
+ }
+ time.addEventListener('input',updateEnergy);battery.addEventListener('change',updateEnergy);
+ const goal=document.querySelector<HTMLSelectElement>('#solar-goal')!;
+ const routes:Record<string,{title:string,copy:string,checks:string[]}>={
+ day:{title:'Explore grid-connected solar.',copy:'Match generation to when the property uses electricity. A battery is a separate decision, not an automatic extra.',checks:['A recent bill showing kWh usage','Your usual daytime appliances','Roof photographs and property location']},
+ backup:{title:'Start with the circuits, then the battery.',copy:'Name what must keep running, how much power it needs and for how long. Whole-property backup is not the default.',checks:['The appliances or circuits that matter','Their rated power and desired running time','Space for compatible battery and inverter equipment']},
+ business:{title:'Match solar to your operating day.',copy:'Opening hours and daytime demand help shape the design. Roof area alone does not tell you how much generation the business can use.',checks:['Recent bills and operating hours','Major daytime equipment and loads','Roof access and electrical supply details']},
+ remote:{title:'Assess the complete off-grid load.',copy:'An independent system needs a design for periods of low generation, not just a sunny afternoon. Storage and backup options need to be considered together.',checks:['Daily appliance use and seasonal changes','Existing grid or generator access','Site conditions and autonomy requirements']}
+ };
+ goal.addEventListener('change',()=>{const r=routes[goal.value];setText('route-title',r.title);setText('route-copy',r.copy);const list=document.getElementById('route-checklist')!;list.replaceChildren(...r.checks.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));});
+ document.getElementById('route-action')!.addEventListener('click',()=>{const field=document.querySelector<HTMLTextAreaElement>('textarea[name="goals"]');if(field&&!field.value.trim())field.value=routes[goal.value].title+' '+routes[goal.value].checks.join('; ');});
+</script>
+<style>
+.daylight{position:relative;min-height:850px;background:#092844;color:#fff;overflow:hidden}.daylight-photo{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,27,49,.96),rgba(4,27,49,.6) 49%,rgba(4,27,49,.07)),url('/rooftop-solar-array.webp') 78% 47%/cover}.daylight-copy{position:relative;max-width:1500px;margin:auto;padding:85px 6vw 130px}.solar-kicker{font-size:11px;font-weight:800;letter-spacing:.16em;margin-bottom:28px}.daylight h1{font-size:clamp(64px,7.3vw,112px);line-height:.96;letter-spacing:-.055em;font-weight:700;max-width:900px}.daylight h1 span{color:#ffae51}.daylight-intro{max-width:500px;font-size:17px;line-height:1.8;margin:30px 0;color:#e1e9ee}.solar-action{display:inline-flex;justify-content:space-between;gap:40px;align-items:center;background:#f9a13a;color:#102b42;font-size:14px;font-weight:800;padding:19px 25px;transition:background .2s,transform .2s}.solar-action:hover{background:#ffb969;transform:translateY(-2px)}.solar-action span{font-size:24px}.daylight-footnote{font-size:12px;margin-top:24px;color:#d5e0e9}.photo-caption{position:absolute;right:5vw;bottom:115px;border-bottom:1px solid #ffffff70;padding-bottom:12px;font-size:12px}.daylight-bottom{position:absolute;bottom:0;left:0;right:0;padding:25px 6vw;border-top:1px solid #ffffff30;display:flex;justify-content:space-between;gap:20px;font-size:11px;letter-spacing:.08em;background:#08233dd9}.power-story{background:#f3f1e9;display:grid;grid-template-columns:.85fr 1.15fr;gap:7vw;padding:110px 6vw;color:#102b42}.story-heading{padding-top:40px}.story-heading h2,.solar-finder h2{font-size:clamp(40px,4.3vw,68px);line-height:1.04;letter-spacing:-.05em;font-weight:600}.story-heading em{font-family:Georgia,serif;font-weight:400;letter-spacing:-.04em}.story-heading>p:last-child{max-width:370px;line-height:1.8;margin-top:28px;color:#485d6c}.power-workbench{border:1px solid #b4c1c7;background:#fcfbf7;padding:26px}.power-toolbar{display:flex;justify-content:space-between;gap:12px;font-size:10px;letter-spacing:.06em;font-weight:800}.power-toolbar output{font-size:12px}.energy-scene{margin:25px -10px 0;background:#e9eff0;transition:background .5s;border-radius:2px}.energy-scene svg{width:100%;height:auto;display:block}.horizon{stroke:#97a8ae;stroke-width:1}.sun-object{fill:#faab45;stroke:#faab45;stroke-width:3;transition:opacity .4s,transform .5s;transform-origin:400px 56px}.house{fill:#faf4e4;stroke:#28495f;stroke-width:2}.roof{fill:none;stroke:#29475c;stroke-width:5}.window{fill:#f8b253;stroke:#28495f;stroke-width:2}.grid-object{fill:none;stroke:#718b9a;stroke-width:3}.battery-object{fill:#dde4e5;stroke:#708897;stroke-width:2;opacity:.35;transition:opacity .4s}.battery-object path{fill:none}.solar-wire,.battery-wire,.grid-wire{fill:none;stroke:#f39d31;stroke-width:4;stroke-dasharray:7 6;animation:energy 1.4s linear infinite}.battery-wire{opacity:0}.grid-wire{stroke:#5f92ad;animation-direction:reverse}.energy-scene text{font-family:inherit;fill:#29475c;font-size:11px;letter-spacing:1px}.energy-scene[data-phase="night"]{background:#18374c}.energy-scene[data-phase="night"] text{fill:#dce5e9}.energy-scene[data-phase="night"] .sun-object,.energy-scene[data-phase="night"] .solar-wire{opacity:0}.energy-scene[data-phase="morning"] .sun-object{transform:translate(-185px,55px)}.energy-scene[data-phase="evening"] .sun-object{transform:translate(185px,55px)}.energy-scene[data-phase="evening"]{background:#f4dec7}.energy-scene[data-battery="true"] .battery-object,.energy-scene[data-battery="true"] .battery-wire{opacity:1}.energy-scene[data-phase="night"] .battery-wire{animation-direction:reverse}.time-control{margin-top:25px}.time-control label{font-size:12px;font-weight:700;display:block;margin-bottom:15px}.time-control input{width:100%;accent-color:#174e78;cursor:pointer;min-height:28px}.time-labels{display:flex;justify-content:space-between;font-size:10px;color:#536778}.battery-toggle{display:flex;align-items:center;gap:10px;margin:25px 0;cursor:pointer;font-size:13px;font-weight:700}.battery-toggle input{width:20px;height:20px;accent-color:#174e78}.switch-track{display:none}.energy-explanation{border-top:1px solid #cdd5d6;padding-top:22px;min-height:135px}.energy-explanation h3{font-size:22px;letter-spacing:-.03em}.energy-explanation p{font-size:14px;line-height:1.7;color:#485d6c;margin-top:10px}.model-note{font-size:11px;line-height:1.6;margin-top:20px;color:#536371}.solar-finder{padding:100px 6vw;background:#103756;color:white;display:grid;grid-template-columns:1fr 1fr;gap:8vw}.solar-finder>div>p:last-child{line-height:1.8;color:#cedae3;margin-top:30px}.finder-panel{border-top:1px solid #87a3b5;padding-top:24px}.finder-panel label{display:block;font-size:12px;margin-bottom:12px}.finder-panel select{width:100%;background:#fcfbf7;color:#102b42;border:0;border-radius:0;padding:18px 12px;font:inherit;font-size:15px}.route-label{color:#ffb969;font-size:10px;font-weight:800;letter-spacing:.12em;margin:30px 0 14px}.finder-panel h3{font-size:30px;line-height:1.2;letter-spacing:-.04em}.finder-panel #route-copy{line-height:1.8;color:#d0dde5;margin:18px 0}.finder-panel h4{font-size:12px;margin:25px 0 10px}.finder-panel ul{list-style:disc;padding-left:20px;font-size:14px;line-height:2;color:#d0dde5;min-height:90px}.finder-panel .solar-action{margin-top:25px}.solar-action:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #e38517;outline-offset:5px}@keyframes energy{to{stroke-dashoffset:-26}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(max-width:800px){.daylight{min-height:auto}.daylight-photo{background-position:60% center;background-image:linear-gradient(90deg,rgba(4,27,49,.92),rgba(4,27,49,.57)),url('/rooftop-solar-array.webp')}.daylight-copy{padding:65px 6vw 125px}.daylight h1{font-size:clamp(54px,11.8vw,86px)}.daylight-intro{font-size:15px;max-width:470px}.photo-caption{display:none}.daylight-bottom{font-size:9px;padding:22px 6vw}.power-story,.solar-finder{grid-template-columns:1fr;gap:40px;padding:65px 6vw}.story-heading{padding-top:0}.story-heading>p:last-child{max-width:none}.power-workbench{padding:20px}.energy-explanation{min-height:165px}.solar-finder h2{font-size:44px}} 
+</style>
