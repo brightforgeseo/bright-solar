@@ -7,12 +7,12 @@ The homepage links to six distinct routes: `/home-solar/`, `/commercial-solar/`,
 ## Passed checks for this expansion
 
 - Astro type check: zero errors, warnings or hints.
-- Static build: nine pages.
+- Static build: ten pages, including `/felicity-solar/`.
 - All six route decision controls tested, including invalid raw-load input.
 - Homepage slider, battery mode, four goals and assessment routing tested at 390, 768 and 1440 pixels.
-- Full-site Chromium and automated WCAG A/AA scan: 18 page/viewport combinations, no reported violations, overflow, broken images or JavaScript exceptions.
+- Full-site Chromium and automated WCAG A/AA scan: 20 page/viewport combinations, no reported violations, overflow, broken images or JavaScript exceptions.
 - Six new routes also checked at 320 pixels.
-- Internal links: 217 links checked against nine generated pages, including target fragments; no missing targets.
+- Internal links: 248 links checked against ten generated pages, including target fragments; no missing targets.
 - Local brief creation/download and no fake send confirmation tested.
 - SEO and privacy source checks passed.
 - Independent bounded expansion code/security review passed. This is not public-launch approval.
@@ -33,6 +33,7 @@ Run `npm ci`, `npm run check` and `npm run build`. Start `npm run preview -- --h
 ```sh
 npm run qa:seo
 npm run qa:privacy
+node scripts/gap-qa.mjs
 node scripts/daylight-qa.mjs
 node scripts/routes-qa.mjs
 node scripts/planner-qa.mjs
