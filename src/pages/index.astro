@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Daylight from '../components/Daylight.astro';
+import MegaMenu from '../components/MegaMenu.astro';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -9,13 +10,11 @@ import {
   ChevronDown,
   FileText,
   HousePlug,
-  Menu,
   PackageCheck,
   PanelsTopLeft,
   PlugZap,
   Ruler,
   ShieldCheck,
-  X,
   Zap,
 } from '@lucide/astro';
 
@@ -152,40 +151,7 @@ const faqs = [
     <title>Solar Panel Installation Planning Manila | Bright Solar</title>
   </head>
   <body class="bg-stone text-ink antialiased">
-    <header id="top" class="site-header">
-      <div class="page-shell flex h-[76px] items-center justify-between">
-        <a href="#top" class="brand" aria-label="Bright Solar home">
-          <img class="brand-logo" src="/bright-solar-logo.svg" alt="Bright Solar" width="1050" height="235" />
-        </a>
-
-        <nav class="hidden items-center gap-8 text-sm font-semibold lg:flex" aria-label="Primary navigation">
-          <a class="nav-link" href="#systems">Systems</a>
-          <a class="nav-link" href="#equipment">Equipment</a><a class="nav-link" href="/news/">News</a>
-          <a class="nav-link" href="#projects">Projects</a>
-          <a class="nav-link" href="#process">Process</a>
-          <a class="nav-link" href="#faq">FAQs</a>
-        </nav>
-
-        <a href="#enquiry" class="button button-dark hidden lg:inline-flex">Prepare an assessment <ArrowUpRight size={17} /></a>
-        <button id="menu-open" class="menu-button lg:hidden" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><Menu size={23} /></button>
-      </div>
-    </header>
-
-    <div id="mobile-menu" class="fixed inset-0 z-50 hidden bg-ink text-white" role="dialog" aria-modal="true" aria-label="Mobile navigation">
-      <div class="flex h-[76px] items-center justify-between border-b border-white/15 px-5">
-        <a href="#top" class="brand"><img class="brand-logo brand-logo-reversed" src="/bright-solar-logo-reversed.svg" alt="Bright Solar" width="1050" height="235" /></a>
-        <button id="menu-close" class="menu-button border-white/25" aria-label="Close navigation"><X size={23} /></button>
-      </div>
-      <nav class="flex flex-col px-5 pt-8 text-2xl font-bold">
-        <a class="mobile-link" href="#systems">Systems</a>
-        <a class="mobile-link" href="#equipment">Equipment</a><a class="mobile-link" href="/news/">News</a>
-        <a class="mobile-link" href="#projects">Projects</a>
-        <a class="mobile-link" href="#process">Process</a>
-        <a class="mobile-link" href="#faq">FAQs</a>
-        <a class="button button-solar mt-8 w-fit" href="#enquiry">Prepare an assessment <ArrowRight size={17} /></a>
-      </nav>
-    </div>
-
+    <MegaMenu/>
     <main>
       <Daylight />
 
@@ -371,27 +337,6 @@ const faqs = [
     </footer>
 
     <style>.solar-resource-links{display:flex;flex-wrap:wrap;gap:25px;padding:35px 0 0;font-weight:700}.solar-resource-links a{text-decoration:underline;text-underline-offset:5px}</style>
-    <script>
-      const openButton = document.querySelector('#menu-open');
-      const closeButton = document.querySelector('#menu-close');
-      const menu = document.querySelector('#mobile-menu');
-      const mobileLinks = document.querySelectorAll('.mobile-link, #mobile-menu a[href="#enquiry"]');
 
-      const openMenu = () => {
-        menu?.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-        openButton?.setAttribute('aria-expanded', 'true');
-      };
-      const closeMenu = () => {
-        menu?.classList.add('hidden');
-        document.body.style.overflow = '';
-        openButton?.setAttribute('aria-expanded', 'false');
-      };
-
-      openButton?.addEventListener('click', openMenu);
-      closeButton?.addEventListener('click', closeMenu);
-      mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
-
-    </script>
   </body>
 </html>
