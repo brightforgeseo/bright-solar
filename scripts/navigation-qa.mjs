@@ -1,0 +1,3 @@
+import {chromium} from 'playwright-core';import assert from 'node:assert/strict';
+const b=await chromium.launch({executablePath:process.env.CHROME_PATH||'/opt/google/chrome/chrome',headless:true});
+try{const p=await b.newPage();await p.goto('http://127.0.0.1:4322');for(const route of ['home-solar','commercial-solar','hybrid-solar','off-grid-solar','solar-panel-cost','net-metering'])assert.ok(await p.locator(`a[href="/${route}/"]`).count(),`Homepage link ${route}`);assert.equal(await p.locator('button[type=submit]').count(),0,'No fake submit form');await p.locator('#route-action').click();assert.match(p.url(),/assessment/);console.log('PASS: homepage routes and honest assessment journey');}finally{await b.close();}

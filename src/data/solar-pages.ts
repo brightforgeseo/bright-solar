@@ -1,0 +1,19 @@
+export type SolarPage = {
+ slug: string; label: string; title: string; description: string; eyebrow: string;
+ heading: string; accent: string; intro: string; image: string; imageAlt: string;
+ question: string; answer: string; points: {title:string; body:string}[];
+ sections: {title:string; paragraphs:string[]}[];
+ checklist: string[]; related:string[]; sources?:{title:string;url:string}[];
+};
+import {additionalPages} from './additional-pages';
+export const solarPages:SolarPage[]=[...additionalPages,{
+ slug:'home-solar',label:'Home solar',title:'Home Solar Systems Philippines | Bright Solar',
+ description:'Explore solar for your home with Bright Solar. Compare daytime use, roof readiness and battery needs before moving to a site-specific system assessment.',
+ eyebrow:'SOLAR FOR HOMES',heading:'A home system.',accent:'Not a standard package.',
+ intro:'A roof can have room for plenty of panels while the house uses most of its electricity after sunset. We start with your daily routine, then help shape a solar assessment around it.',
+ image:'/rooftop-solar-array.webp',imageAlt:'Solar panels on a metal rooftop',
+ question:'What does your home use during daylight?',answer:'That is the first useful question. A monthly bill shows the total, but not whether the electricity is used by daytime air conditioning, a home office or appliances running late at night.',
+ points:[{title:'Your daily routine',body:'Tell us when people are home and when the larger appliances run. Daytime demand gives the design a different starting point from a mostly empty house.'},{title:'The roof you can use',body:'Photographs help start the conversation. A qualified survey still needs to assess shade, roof condition, mounting suitability and electrical access.'},{title:'What happens after dark',body:'A battery is not compulsory. If stored energy or outage backup matters, list the circuits and appliances you want it to support before discussing capacity.'}],
+ sections:[{title:'Start with consumption, not a peso saving.',paragraphs:['Bring a recent electricity bill with the kWh consumption visible. If your use changes substantially through the year, more than one bill gives a better picture. The amount paid is useful context, but tariffs and bill components mean it is not a direct measure of the solar equipment you need.','We use that information to qualify the enquiry and explain the available system routes. The appointed implementation partner confirms the site survey, engineering, equipment and installation scope. A remote conversation does not replace the roof or electrical inspection.']},{title:'Keep solar-only and backup separate.',paragraphs:['Grid-connected solar can supply household demand when generation is available. A standard grid-connected system should not be treated as emergency power when the grid fails. Backup needs an appropriate system design, not simply a panel count.','If your priority is keeping a fridge, lights or home office running, the hybrid assessment should start with those loads and the time you need them. Adding every appliance to the backup list changes both power and storage requirements.']},{title:'Check ownership and access early.',paragraphs:['A rented property, shared roof or planned renovation needs a different conversation from an owner-occupied house with clear roof access. Confirm who can approve the work and whether roofing changes are already planned.','Before committing, ask for a written scope identifying the equipment, mounting, electrical works, connection route and after-sales responsibilities. For a Meralco-served property, use the net-metering guidance to understand the separate utility application.']}],
+ checklist:['Recent bill with kWh consumption','Daytime and evening appliance use','Roof photographs, shade and access details','Property location and permission to use the roof'],related:['hybrid-solar','solar-panel-cost','net-metering']
+}];

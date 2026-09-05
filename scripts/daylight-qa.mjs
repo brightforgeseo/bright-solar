@@ -20,7 +20,8 @@ try {
   }
   await page.selectOption('#solar-goal','backup');
   await page.locator('#route-action').click();
-  assert.match(await page.locator('textarea[name="goals"]').inputValue(),/circuits/);
+  await page.waitForURL('**/assessment/?system=hybrid-solar');
+  assert.equal(await page.locator('#brief-system').inputValue(),'hybrid-solar');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   assert.deepEqual(errors,[]);
   await page.evaluate(()=>scrollTo(0,0));

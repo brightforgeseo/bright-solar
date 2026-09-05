@@ -1,0 +1,22 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import {solarPages} from '../data/solar-pages';
+---
+<SiteLayout title="Prepare Your Solar Assessment Brief | Bright Solar" description="Prepare a solar brief with your property, electricity use and priorities. Download your notes locally before a site-specific Felicity Solar assessment.">
+<section class="form-page"><p class="route-kicker">YOUR PROPERTY. YOUR PRIORITIES.</p><h1>Get the details<br/>in one place.</h1><p>Build a short brief for your solar conversation. We focus on Felicity Solar equipment options, but the right configuration starts with the property and the job you need it to do.</p><p class="local-note">This tool prepares a file on your device. It does not send an enquiry or book a survey. Online enquiry delivery is not available yet. Do not enter account numbers or upload bills here.</p>
+<form id="brief-form"><label for="brief-system">System or question</label><select id="brief-system" name="system">{solarPages.map(page=><option value={page.slug}>{page.label}</option>)}</select><label for="brief-location">City or province</label><input id="brief-location" maxlength="160" required autocomplete="address-level2" placeholder="e.g. Quezon City"/><label for="brief-use">Electricity use and operating pattern (optional)</label><input id="brief-use" maxlength="500" placeholder="e.g. daytime home office; recent bill available"/><label for="brief-goals">What do you need the system to do?</label><textarea id="brief-goals" maxlength="3000" required placeholder="Daytime use, essential backup loads, hours needed, existing equipment…"></textarea><button id="build-brief" type="submit" class="solar-link-button">Build my brief ↗</button></form>
+<p id="brief-status" role="status"></p><pre id="brief-result" class="brief-output" hidden></pre><button type="button" id="download-brief" class="solar-link-button" hidden>Download my brief ↓</button>
+<noscript><p>The brief tool needs JavaScript. You can still prepare your location, operating pattern, equipment details and priorities using the checklists on the system pages.</p></noscript><p class="local-note"><a href="/privacy/">How this site handles information</a></p></section>
+<script>
+const form=document.querySelector<HTMLFormElement>('#brief-form')!;
+const system=document.querySelector<HTMLSelectElement>('#brief-system')!;
+const wanted=new URLSearchParams(location.search).get('system');
+if(wanted&&Array.from(system.options).some(option=>option.value===wanted))system.value=wanted;
+const result=document.querySelector<HTMLElement>('#brief-result')!;
+const status=document.querySelector<HTMLElement>('#brief-status')!;
+const download=document.querySelector<HTMLButtonElement>('#download-brief')!;
+form.addEventListener('submit',event=>{event.preventDefault();const locationField=document.querySelector<HTMLInputElement>('#brief-location')!;const use=document.querySelector<HTMLInputElement>('#brief-use')!;const goals=document.querySelector<HTMLTextAreaElement>('#brief-goals')!;if(!locationField.value.trim()||!goals.value.trim()){status.textContent='Please add the location and your priorities.';return;}result.textContent=`BRIGHT SOLAR ASSESSMENT BRIEF\n\nProduct range: Felicity Solar\nInterest: ${system.selectedOptions[0].textContent}\nLocation: ${locationField.value.trim()}\nElectricity use: ${use.value.trim()||'To discuss'}\n\nPriorities\n${goals.value.trim()}\n\nFor discussion only. Not a technical design, quotation or booking.`;result.hidden=false;download.hidden=false;status.textContent='Your brief is ready on this device. It has not been sent to Bright Solar.';});
+form.addEventListener('input',()=>{if(!result.hidden){result.hidden=true;download.hidden=true;status.textContent='Details changed. Build the brief again to update the download.';}});
+download.addEventListener('click',()=>{if(result.hidden)return;const url=URL.createObjectURL(new Blob([result.textContent||''],{type:'text/plain;charset=utf-8'}));const link=document.createElement('a');link.href=url;link.download='bright-solar-assessment.txt';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+</script>
+</SiteLayout>

@@ -6,7 +6,6 @@ import {
   ArrowUpRight,
   BatteryCharging,
   Building2,
-  Check,
   ChevronDown,
   FileText,
   HousePlug,
@@ -24,6 +23,7 @@ const services = [
   {
     number: '01',
     title: 'Solar for homes',
+    href: '/home-solar/',
     copy: 'System size starts with your electricity bill and usable roof area. We then account for daytime loads, shading and the equipment already on site.',
     bestFor: 'Houses and townhouses',
     icon: HousePlug,
@@ -31,6 +31,7 @@ const services = [
   {
     number: '02',
     title: 'Commercial solar',
+    href: '/commercial-solar/',
     copy: 'For businesses, operating hours matter as much as roof space. We plan around when the property uses power and what the connection can support.',
     bestFor: 'Shops, offices and operating sites',
     icon: Building2,
@@ -38,6 +39,7 @@ const services = [
   {
     number: '03',
     title: 'Hybrid and battery systems',
+    href: '/hybrid-solar/',
     copy: 'If backup is part of the brief, we identify the circuits that matter and size storage around the job it needs to do.',
     bestFor: 'Selected backup loads and stored solar',
     icon: BatteryCharging,
@@ -164,7 +166,7 @@ const faqs = [
           <a class="nav-link" href="#faq">FAQs</a>
         </nav>
 
-        <a href="#enquiry" class="button button-dark hidden lg:inline-flex">Request an assessment <ArrowUpRight size={17} /></a>
+        <a href="#enquiry" class="button button-dark hidden lg:inline-flex">Prepare an assessment <ArrowUpRight size={17} /></a>
         <button id="menu-open" class="menu-button lg:hidden" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><Menu size={23} /></button>
       </div>
     </header>
@@ -180,7 +182,7 @@ const faqs = [
         <a class="mobile-link" href="#projects">Projects</a>
         <a class="mobile-link" href="#process">Process</a>
         <a class="mobile-link" href="#faq">FAQs</a>
-        <a class="button button-solar mt-8 w-fit" href="#enquiry">Request an assessment <ArrowRight size={17} /></a>
+        <a class="button button-solar mt-8 w-fit" href="#enquiry">Prepare an assessment <ArrowRight size={17} /></a>
       </nav>
     </div>
 
@@ -209,7 +211,7 @@ const faqs = [
                   <h3>{service.title}</h3>
                   <p>{service.copy}</p>
                   <div class="service-fit"><span>Best for</span>{service.bestFor}</div>
-                  <a href="#enquiry" aria-label={`Ask about ${service.title}`}>Discuss this system <ArrowRight size={16} /></a>
+                  <a href={service.href} aria-label={`Explore ${service.title}`}>Explore this system <ArrowRight size={16} /></a>
                 </article>
               );
             })}
@@ -310,6 +312,7 @@ const faqs = [
             <p>Bright Solar handles initial education, assessment intake and qualified routing. The appointed implementation partner owns the final technical design, installation, permits, warranty registration and after-sales.</p>
           </div>
 
+          <nav class="solar-resource-links" aria-label="Solar planning resources"><a href="/off-grid-solar/">Off-grid solar ↗</a><a href="/solar-panel-cost/">Compare solar costs ↗</a><a href="/net-metering/">Understand net metering ↗</a></nav>
           <ol class="process-list mt-16">
             {process.map(([title, copy], index) => (
               <li>
@@ -323,43 +326,7 @@ const faqs = [
       </section>
 
       <section id="enquiry" class="section bg-white">
-        <div class="page-shell grid border border-line lg:grid-cols-[0.78fr_1.22fr]">
-          <div class="enquiry-copy">
-            <p class="eyebrow">Solar enquiry</p>
-            <h2>Tell us about the property and current bill.</h2>
-            <p>We need the location, bill range and intended outcome to make the first assessment useful. A copy of the actual bill and site photos can follow securely.</p>
-            <ul>
-              <li><Check size={17} /> Residential and commercial enquiries</li>
-              <li><Check size={17} /> Solar-only, hybrid, battery and off-grid options</li>
-              <li><Check size={17} /> Bill-led qualification before technical design</li>
-              <li><Check size={17} /> Clear partner responsibility for installation and after-sales</li>
-            </ul>
-          </div>
-
-          <form id="assessment-form" class="enquiry-form">
-            <label class="form-field"><span>Name</span><input required name="name" autocomplete="name" placeholder="Your name" /></label>
-            <label class="form-field"><span>Email</span><input required type="email" name="email" autocomplete="email" placeholder="you@example.com" /></label>
-            <label class="form-field"><span>City or province</span><input required name="location" autocomplete="address-level2" placeholder="e.g. Quezon City" /></label>
-            <label class="form-field"><span>Property type</span><select name="property"><option>House</option><option>Townhouse</option><option>Commercial property</option><option>Farm or rural property</option><option>Other</option></select></label>
-            <label class="form-field sm:col-span-2"><span>Typical monthly electricity bill</span><select name="bill"><option>Below ₱5,000</option><option>₱5,000 to ₱10,000</option><option>₱10,001 to ₱25,000</option><option>₱25,001 to ₱50,000</option><option>Above ₱50,000</option></select></label>
-            <fieldset class="sm:col-span-2">
-              <legend>Interested in</legend>
-              <div class="flex flex-wrap gap-2">
-                <label class="interest-pill"><input type="checkbox" name="interest" value="solar" /><span>Grid-connected solar</span></label>
-                <label class="interest-pill"><input type="checkbox" name="interest" value="battery" /><span>Solar + battery</span></label>
-                <label class="interest-pill"><input type="checkbox" name="interest" value="hybrid" /><span>Hybrid system</span></label>
-                <label class="interest-pill"><input type="checkbox" name="interest" value="off-grid" /><span>Off-grid system</span></label>
-              </div>
-            </fieldset>
-            <label class="form-field sm:col-span-2"><span>What do you want the system to do?</span><textarea name="goals" rows="4" placeholder="Lower daytime grid use, cover selected backup loads, support a remote property, prepare for storage..."></textarea></label>
-            <label class="consent-field sm:col-span-2"><input required type="checkbox" name="partner-consent" /><span>I agree that Bright Solar may share this enquiry with an appointed installation partner for assessment, quotation and project follow-up.</span></label>
-            <div class="form-actions sm:col-span-2">
-              <p>Secure form delivery must be connected before public launch. No documents are uploaded through this preview form.</p>
-              <button type="submit" class="button button-dark">Send enquiry <ArrowUpRight size={17} /></button>
-            </div>
-            <p id="form-success" class="hidden border-t border-line pt-5 text-sm font-bold text-deep sm:col-span-2" role="status">The preview interaction is working. Secure delivery and partner routing must be connected before public launch.</p>
-          </form>
-        </div>
+        <div class="page-shell"><p class="eyebrow">Start with your property</p><h2>Prepare your solar brief.</h2><p class="mt-7 max-w-2xl leading-8">Put your location, electricity use and priorities into a short downloadable brief. The tool works on your device and does not send an enquiry. Online enquiry delivery is not available yet.</p><a href="/assessment/" class="button button-solar mt-7">Build my brief <ArrowUpRight size={17}/></a></div>
       </section>
 
       <section id="faq" class="section">
@@ -395,13 +362,15 @@ const faqs = [
             <a href="#equipment">Equipment</a>
             <a href="#projects">Projects</a>
             <a href="#process">Process</a>
-            <a href="#enquiry">Contact</a>
+            <a href="/assessment/">Assessment brief</a>
+            <a href="/privacy/">Privacy</a>
           </nav>
         </div>
         <div class="footer-bottom"><span>© {new Date().getFullYear()} Bright Solar.</span><span>Equipment, availability and installation scope are confirmed per project.</span></div>
       </div>
     </footer>
 
+    <style>.solar-resource-links{display:flex;flex-wrap:wrap;gap:25px;padding:35px 0 0;font-weight:700}.solar-resource-links a{text-decoration:underline;text-underline-offset:5px}</style>
     <script>
       const openButton = document.querySelector('#menu-open');
       const closeButton = document.querySelector('#menu-close');
@@ -423,12 +392,6 @@ const faqs = [
       closeButton?.addEventListener('click', closeMenu);
       mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
 
-      const form = document.querySelector('#assessment-form');
-      const success = document.querySelector('#form-success');
-      form?.addEventListener('submit', (event) => {
-        event.preventDefault();
-        success?.classList.remove('hidden');
-      });
     </script>
   </body>
 </html>
