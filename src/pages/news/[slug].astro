@@ -1,0 +1,47 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import {getCollection, render} from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('news', ({data}) => data.published);
+  return articles.map((article) => ({
+    params: {slug: article.data.slug},
+    props: {article},
+  }));
+}
+
+const {article} = Astro.props;
+const {Content} = await render(article);
+---
+<SiteLayout title={article.data.metaTitle} description={article.data.description}>
+  <article class="news-article">
+    <header class="news-article-hero">
+      <p class="route-kicker">BRIGHT SOLAR / NEWS & GUIDES</p>
+      <a class="breadcrumb" href="/news/">News & guides /</a>
+      <h1>{article.data.title}</h1>
+      <p>{article.data.summary}</p>
+    </header>
+    <div class="news-article-body">
+      <Content />
+    </div>
+    <p class="news-article-back"><a href="/news/">Back to news and guides</a></p>
+  </article>
+</SiteLayout>
+<style>
+.news-article-hero{padding:70px 6vw;background:#102b42;color:#fff}
+.news-article-hero h1{font-size:clamp(36px,5.4vw,68px);line-height:1.08;letter-spacing:-.035em;max-width:18ch}
+.news-article-hero>p:last-child{max-width:720px;font-size:18px;line-height:1.85;margin-top:28px;color:#e0e9ef}
+.breadcrumb{display:inline-block;font-size:13px;color:#d5e2eb}
+.news-article-body{padding:55px 6vw 20px;background:#faf9f5;max-width:860px}
+.news-article-body :global(h2){font-size:30px;line-height:1.25;margin:42px 0 16px;color:#102b42}
+.news-article-body :global(p){font-size:17px;line-height:1.85;margin:0 0 18px;color:#243848}
+.news-article-body :global(a){color:#102b42;text-decoration:underline;text-underline-offset:3px}
+.news-article-back{padding:10px 6vw 70px;background:#faf9f5}
+.news-article-back a{font-weight:700;color:#102b42}
+@media(max-width:600px){
+  .news-article-hero{padding:45px 6vw}
+  .news-article-body,.news-article-back{padding-left:6vw;padding-right:6vw}
+  .news-article-hero>p:last-child{font-size:16px}
+  .news-article-body :global(h2){font-size:24px}
+}
+</style>

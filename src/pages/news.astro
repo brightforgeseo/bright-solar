@@ -1,12 +1,34 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-const guides=[{href:'/home-solar/',title:'Solar for your home',description:'Understand daytime use, grid-tie systems and the information needed for an assessment.'},{href:'/felicity-solar/',title:'Felicity Solar equipment',description:'Explore the roles of inverters and batteries before comparing a proposed configuration.'},{href:'/solar-panel-cost/',title:'Costs and quotations',description:'Compare scope, system sizes and the assumptions behind a solar quotation.'},{href:'/net-metering/',title:'Meralco net metering',description:'Follow the application process and find the official requirements.'}];
+import {getCollection} from 'astro:content';
+const articles = (await getCollection('news', ({data}) => data.published))
+  .sort((a, b) => a.data.id.localeCompare(b.data.id));
+const guides=[
+  {href:'/home-solar/',title:'Solar for your home',description:'Understand daytime use, grid-tie systems and the information needed for an assessment.'},
+  {href:'/felicity-solar/',title:'Felicity Solar equipment',description:'Explore the roles of inverters and batteries before comparing a proposed configuration.'},
+  {href:'/solar-panel-cost/',title:'Costs and quotations',description:'Compare scope, system sizes and the assumptions behind a solar quotation.'},
+  {href:'/net-metering/',title:'Meralco net metering',description:'Follow the application process and find the official requirements.'},
+];
 ---
 <SiteLayout title="Solar News & Guides Philippines | Bright Solar" description="Solar news and practical reading from Bright Solar. Explore our guides to home systems, Felicity Solar equipment, installation costs and net metering.">
 <section class="news-heading"><p class="route-kicker">BRIGHT SOLAR / NEWS & GUIDES</p><h1>Better questions.<br/><span>Clearer solar decisions.</span></h1><p>News, equipment insights and practical reading for homes and businesses considering solar in the Philippines.</p></section>
-<section class="news-latest" aria-labelledby="latest-title"><h2 id="latest-title">Latest articles</h2><div class="news-empty"><h3>No articles published yet.</h3><p>While we prepare our first articles, explore the practical guides below. They cover the decisions to make before choosing equipment or agreeing a system scope.</p></div></section>
+<section class="news-latest" aria-labelledby="latest-title">
+  <h2 id="latest-title">Latest articles</h2>
+  {articles.length ? (
+    <div class="news-list">
+      {articles.map((article) => (
+        <a href={`/news/${article.data.slug}/`}>
+          <h3>{article.data.title} <span aria-hidden="true">↗</span></h3>
+          <p>{article.data.summary}</p>
+        </a>
+      ))}
+    </div>
+  ) : (
+    <div class="news-empty"><h3>No articles published yet.</h3><p>While we prepare our first articles, explore the practical guides below. They cover the decisions to make before choosing equipment or agreeing a system scope.</p></div>
+  )}
+</section>
 <section class="news-guides" aria-labelledby="guides-title"><p class="route-kicker">START HERE</p><h2 id="guides-title">Explore our solar guides</h2><div>{guides.map(guide=><a href={guide.href}><h3>{guide.title} <span aria-hidden="true">↗</span></h3><p>{guide.description}</p></a>)}</div></section>
 </SiteLayout>
 <style>
-.news-heading{padding:70px 6vw;background:#102b42;color:#fff}.news-heading h1{font-size:clamp(42px,6vw,84px);line-height:1.06;letter-spacing:-.04em}.news-heading h1 span{color:#ffb15c}.news-heading>p:last-child{max-width:670px;font-size:18px;line-height:1.85;margin-top:30px;color:#e0e9ef}.news-latest,.news-guides{padding:55px 6vw;background:#faf9f5}.news-latest h2,.news-guides h2{font-size:34px;line-height:1.2}.news-empty{margin-top:25px;border-left:4px solid #d27413;padding:22px 28px;background:#f0eee5}.news-empty h3{font-size:21px}.news-empty p{max-width:740px;line-height:1.85;margin-top:12px;color:#364f62}.news-guides{background:#e7eef1}.news-guides>div{display:grid;grid-template-columns:1fr 1fr;gap:25px 50px;margin-top:30px}.news-guides a{border-top:1px solid #879ba8;padding:24px 0}.news-guides h3{display:flex;justify-content:space-between;gap:20px;font-size:23px}.news-guides p{margin-top:15px;line-height:1.85;color:#364f62}@media(max-width:600px){.news-heading{padding:45px 6vw}.news-guides>div{grid-template-columns:1fr}.news-latest,.news-guides{padding:40px 6vw}.news-heading>p:last-child{font-size:16px}}
+.news-heading{padding:70px 6vw;background:#102b42;color:#fff}.news-heading h1{font-size:clamp(42px,6vw,84px);line-height:1.06;letter-spacing:-.04em}.news-heading h1 span{color:#ffb15c}.news-heading>p:last-child{max-width:670px;font-size:18px;line-height:1.85;margin-top:30px;color:#e0e9ef}.news-latest,.news-guides{padding:55px 6vw;background:#faf9f5}.news-latest h2,.news-guides h2{font-size:34px;line-height:1.2}.news-empty{margin-top:25px;border-left:4px solid #d27413;padding:22px 28px;background:#f0eee5}.news-empty h3{font-size:21px}.news-empty p{max-width:740px;line-height:1.85;margin-top:12px;color:#364f62}.news-list{margin-top:30px;display:grid;gap:0}.news-list a{display:block;border-top:1px solid #879ba8;padding:24px 0}.news-list h3{display:flex;justify-content:space-between;gap:20px;font-size:23px;color:#102b42}.news-list p{margin-top:12px;line-height:1.85;color:#364f62;max-width:760px}.news-guides{background:#e7eef1}.news-guides>div{display:grid;grid-template-columns:1fr 1fr;gap:25px 50px;margin-top:30px}.news-guides a{border-top:1px solid #879ba8;padding:24px 0}.news-guides h3{display:flex;justify-content:space-between;gap:20px;font-size:23px}.news-guides p{margin-top:15px;line-height:1.85;color:#364f62}@media(max-width:600px){.news-heading{padding:45px 6vw}.news-guides>div{grid-template-columns:1fr}.news-latest,.news-guides{padding:40px 6vw}.news-heading>p:last-child{font-size:16px}}
 </style>
