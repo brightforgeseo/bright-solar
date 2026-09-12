@@ -41,7 +41,9 @@ def audit(route):
     for key in ['og:title','og:description','og:type','og:image','twitter:card','twitter:title','twitter:description','twitter:image']:
         check(len(meta(key))==1 and bool(meta(key)[0]),key)
     check(not any('noindex' in v for v in meta('robots')),'indexability')
-    if route=='/': check(meta('google-site-verification')==[TOKEN], 'GSC exact once')
+    if route=='/':
+        check(meta('google-site-verification')==[TOKEN], 'GSC exact once')
+        check(text.count(f'<meta name="google-site-verification" content="{TOKEN}" />')==1,'GSC literal tag once')
     graphs=[]
     for tag in s.select('script[type="application/ld+json"]'):
         try:
@@ -74,7 +76,7 @@ errors=[{'route':r['route'],'error':e} for r in rows for e in r['errors']]
 for key in ['title','description']:
     values=[str(r[key]) for r in rows]
     if len(values)!=len(set(values)): errors.append({'error':'duplicate '+key})
-paths=sorted({x['path'] for r in rows for x in r['links']})
+paths=sorted({x['path'] for r in rows for x in r['links']} | {'/og.jpg','/bright-solar-logo-header.svg'})
 def target(path):
     if a.base:
         status,text,final,headers=load(path)

@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 const base=process.env.BASE||'http://127.0.0.1:4333';
-const out=process.env.QA_OUT||'/home/benecho/state/worknotes/two-sites-technical/bright-solar';
+const out=process.env.QA_OUT||'qa/technical';
 const phase=process.env.PHASE||'local';
 const routes=JSON.parse(fs.readFileSync(`${out}/local-seo.json`)).rows.map(x=>x.route);
 const b=await chromium.launch({executablePath:process.env.CHROME_PATH||'/usr/sbin/chromium',headless:true,args:['--no-sandbox']});

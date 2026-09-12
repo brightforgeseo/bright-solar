@@ -1,7 +1,8 @@
 import {chromium} from 'playwright-core';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-const out='/home/benecho/state/worknotes/two-sites-technical/bright-solar';
+const out=process.env.QA_OUT||'qa/technical';
+fs.mkdirSync(out,{recursive:true});
 const mode=process.env.MODE||'before',base=process.env.BASE||'https://brightsolar.com.ph';
 const b=await chromium.launch({executablePath:'/usr/sbin/chromium',headless:true,args:['--no-sandbox']});
 const results=[];

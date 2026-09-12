@@ -39,5 +39,5 @@ if(path==='/news/'){
 <meta name="twitter:title" content={title}/>
 <meta name="twitter:description" content={description}/>
 <meta name="robots" content={noindex?'noindex, follow':'index, follow, max-image-preview:large'}/>
-{path==='/' && <meta name="google-site-verification" content="CUevn9WJcHia8hcOsRjkPAWfVd_rYEadPVfwDEp7w1U" />}
+{path==='/' && <Fragment set:html={'<meta name="google-site-verification" content="CUevn9WJcHia8hcOsRjkPAWfVd_rYEadPVfwDEp7w1U" />'} />}
 {!noindex && <script is:inline type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@graph':graph}).replace(/</g,'\\u003c')} />}
