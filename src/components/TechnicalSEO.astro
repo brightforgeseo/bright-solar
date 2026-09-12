@@ -1,0 +1,43 @@
+---
+import {getCollection} from 'astro:content';
+interface Props {title:string; description:string; headline?:string; noindex?:boolean;}
+const {title,description,headline,noindex=false}=Astro.props;
+const origin='https://brightsolar.com.ph';
+const path=Astro.url.pathname;
+const canonical=new URL(path,origin).href;
+const organisation={'@type':'Organization','@id':`${origin}/#organization`,name:'Bright Solar',url:`${origin}/`,logo:`${origin}/bright-solar-logo-header.svg`,description:'Solar education, assessment intake and project qualification. Appointed implementation partners handle final engineering, installation, permits and agreed after-sales.'};
+const website={'@type':'WebSite','@id':`${origin}/#website`,url:`${origin}/`,name:'Bright Solar',publisher:{'@id':organisation['@id']},inLanguage:'en'};
+const isArticle=path.startsWith('/news/')&&path!='/news/';
+const collection=['/news/','/felicity-solar/'].includes(path);
+const name=headline||title.replace(/ \| Bright Solar$/,'');
+const serviceNames:Record<string,string>={'/home-solar/':'Home solar assessment and planning','/commercial-solar/':'Commercial solar assessment and planning','/hybrid-solar/':'Hybrid solar and battery assessment','/off-grid-solar/':'Off-grid solar planning'};
+const page:Record<string,unknown>={'@type':collection?'CollectionPage':'WebPage','@id':`${canonical}#webpage`,url:canonical,name,description,isPartOf:{'@id':website['@id']},about:{'@id':organisation['@id']},inLanguage:'en'};
+const graph:Record<string,unknown>[]=[organisation,website,page];
+if(path!=='/'&&!noindex){
+ const crumbs=[{'@type':'ListItem',position:1,name:'Home',item:`${origin}/`}];
+ if(isArticle)crumbs.push({'@type':'ListItem',position:2,name:'News & guides',item:`${origin}/news/`});
+ crumbs.push({'@type':'ListItem',position:crumbs.length+1,name,item:canonical});
+ page.breadcrumb={'@id':`${canonical}#breadcrumb`};
+ graph.push({'@type':'BreadcrumbList','@id':`${canonical}#breadcrumb`,itemListElement:crumbs});
+}
+if(isArticle){
+ page.mainEntity={'@id':`${canonical}#article`};
+ graph.push({'@type':'Article','@id':`${canonical}#article`,headline:name,description,url:canonical,mainEntityOfPage:{'@id':page['@id']},publisher:{'@id':organisation['@id']},inLanguage:'en'});
+}
+if(serviceNames[path]){
+ page.mainEntity={'@id':`${canonical}#service`};
+ graph.push({'@type':'Service','@id':`${canonical}#service`,name:serviceNames[path],description,url:canonical,provider:{'@id':organisation['@id']},serviceType:'Solar education, assessment intake and project qualification'});
+}
+if(path==='/news/'){
+ const articles=(await getCollection('news',({data})=>data.published)).sort((a,b)=>a.data.id.localeCompare(b.data.id));
+ page.mainEntity={'@id':`${canonical}#articles`};
+ graph.push({'@type':'ItemList','@id':`${canonical}#articles`,itemListElement:articles.map((a,i)=>({'@type':'ListItem',position:i+1,name:a.data.title,url:`${origin}/news/${a.data.slug}/`}))});
+}
+---
+{!noindex && <><link rel="canonical" href={canonical}/><meta property="og:url" content={canonical}/></>}
+<meta property="og:type" content={isArticle?'article':'website'}/>
+<meta name="twitter:title" content={title}/>
+<meta name="twitter:description" content={description}/>
+<meta name="robots" content={noindex?'noindex, follow':'index, follow, max-image-preview:large'}/>
+{path==='/' && <meta name="google-site-verification" content="CUevn9WJcHia8hcOsRjkPAWfVd_rYEadPVfwDEp7w1U" />}
+{!noindex && <script is:inline type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@graph':graph}).replace(/</g,'\\u003c')} />}

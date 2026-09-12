@@ -80,7 +80,7 @@ checks = {
     'open_graph_present': all(key in parser.meta for key in ['og:title', 'og:description', 'og:type']),
     'superseded_brand_absent': 'solara' not in html.lower(),
     'private_partner_absent': 'arutcurtsa'[::-1] not in html.lower(),
-    'canonical': 'skipped until a live domain is supplied',
+    'canonical': 'https://brightsolar.com.ph/' if 'rel="canonical" href="https://brightsolar.com.ph/"' in html else None,
 }
 
 failures = []
@@ -90,6 +90,7 @@ if not 140 <= len(description) <= 155: failures.append('description length')
 if parser.h1_count != 1: failures.append('h1 count')
 if not 1 <= keyword_occurrences <= 5: failures.append('keyword occurrence range')
 if parser.lang != 'en': failures.append('language')
+if not checks['canonical']: failures.append('canonical')
 if not checks['viewport_present']: failures.append('viewport')
 if not checks['open_graph_present']: failures.append('Open Graph')
 if not checks['superseded_brand_absent']: failures.append('superseded brand')

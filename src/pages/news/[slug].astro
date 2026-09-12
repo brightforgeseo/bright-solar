@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 const {article} = Astro.props;
 const {Content} = await render(article);
 ---
-<SiteLayout title={article.data.metaTitle} description={article.data.description}>
+<SiteLayout title={article.data.metaTitle} description={article.data.description} headline={article.data.title}>
   <article class="news-article">
     <header class="news-article-hero">
       <p class="route-kicker">BRIGHT SOLAR / NEWS & GUIDES</p>

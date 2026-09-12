@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://brightsolar.com.ph/sitemap.xml

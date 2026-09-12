@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import SocialImage from '../components/SocialImage.astro';
+import TechnicalSEO from '../components/TechnicalSEO.astro';
 import Daylight from '../components/Daylight.astro';
 import MegaMenu from '../components/MegaMenu.astro';
 import {
@@ -144,7 +145,7 @@ const faqs = [
     <meta name="theme-color" content="#0a2342" />
     <meta property="og:title" content="Solar Panel Installation Planning Manila | Bright Solar" />
     <meta property="og:description" content="Practical solar assessment, current equipment options and qualified installation support for Philippine homes and businesses." />
-    <meta property="og:type" content="website" />
+    <TechnicalSEO title="Solar Panel Installation Planning Manila | Bright Solar" description="Bright Solar helps Philippine homes and businesses assess solar, hybrid and battery systems, with clear equipment options and partner installation." />
     <SocialImage />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -153,8 +154,9 @@ const faqs = [
     <title>Solar Panel Installation Planning Manila | Bright Solar</title>
   </head>
   <body class="bg-stone text-ink antialiased">
+    <a class="skip-link" href="#main">Skip to content</a>
     <MegaMenu/>
-    <main>
+    <main id="main">
       <Daylight />
 
       <section id="systems" class="section bg-white">
@@ -259,7 +261,7 @@ const faqs = [
           <div class="project-grid mt-16">
             {projectPhotos.map((photo) => (
               <figure class:list={['project-photo', photo.featured && 'project-photo-featured']}>
-                <img src={photo.src} alt={photo.alt} loading={photo.featured ? 'eager' : 'lazy'} />
+                <img src={photo.src} alt={photo.alt} width={photo.featured ? 896 : 960} height={photo.featured ? 1195 : 1280} loading="lazy" />
                 <figcaption>
                   <strong>{photo.title}</strong>
                   <span>{photo.detail}</span>

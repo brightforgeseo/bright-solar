@@ -1,0 +1,31 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Netlify preserves the original query string when no query is specified here.
+[[redirects]]
+  from = "https://roaring-pony-053382.netlify.app/*"
+  to = "https://brightsolar.com.ph/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://main--roaring-pony-053382.netlify.app/*"
+  to = "https://brightsolar.com.ph/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.brightsolar.com.ph/*"
+  to = "https://brightsolar.com.ph/:splat"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Unknown paths use Astro's 404.html with Netlify's real HTTP 404 response.
+# Do not add an SPA catch-all rewrite.

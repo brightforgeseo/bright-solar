@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+.skip-link{position:fixed;top:-100px;left:20px;z-index:100;background:#fff;padding:15px;color:#102b42}.skip-link:focus{top:10px}
+
 @theme {
   --color-ink: #0a2342;
   --color-deep: #0f4c81;

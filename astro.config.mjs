@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://brightsolar.com.ph',
+  trailingSlash: 'always',
   vite: {
     plugins: [tailwindcss()],
     preview: {
